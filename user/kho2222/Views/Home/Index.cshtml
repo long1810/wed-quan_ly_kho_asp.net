@@ -1,0 +1,317 @@
+﻿@model IEnumerable<kho2222.Models.hang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using kho2222.Models
+
+
+
+
+
+<link rel="stylesheet" href="~/Themes/css/font-awesome-4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="~/Themes/css/stylee.css">
+<link rel="stylesheet" href="~/assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h1 style="color:antiquewhite">Mục tiêu 
+                    @*<br> A New Style!*@</h1>
+                    <p style="color:antiquewhite">tập trung chủ yếu vào người mua, nên người bán có phần thụ động, vì vậy nếu chủ doanh nghiệp, cửa hàng không chủ động sẽ gặp nhiều khó khăn, khó phát triển gian hàng trên trang thương mại điện tử này.</p>
+                    <a href="" class="btn"> Xem nào </a>
+                </div>
+                <div class="col-5">
+
+                    <img src="~/Themes/images/a3.jpg">
+                    <img src="~/Themes/images/a2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------campus----------------------------------- -->
+    <section class="campus samll-container">
+        <h1 class="title">NGUYÊN TẮC CỦA CHÚNG TÔI</h1>
+        <p>Luôn luôn lắng nghe và thấu hiểu khách hàng.. </p>
+        <div class="row">
+            <div class="campus-col">
+                <img src="~/Themes/images/b1.jpg">
+                <div class="layer">
+                    <h3>THÔNG MINH</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="~/Themes/images/b2.jpg">
+                <div class="layer">
+                    <h3>KẾT LỐI</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="~/Themes/images/b3.jpg">
+                <div class="layer">
+                    <h3>CHÍNH XÁC</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- -----------featured ------------ -->
+    <div class="categories" id="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="~/Themes/images/b4.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="~/Themes/images/b5.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="~/Themes/images/b6.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- -----------featured prodduct------------ -->
+    <div class="small-container">
+        <h2 class="title">Hàng Lổi trội</h2>
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                if (item.gia > 25000000)
+                {
+                    <div class="col-4">
+                        <a href="#" style="text-decoration:none;">
+                            <img src="~/@item.anh">
+                            @*<img src="~/@item.anh" class="card-img-top" style="width:70%; height:160px; margin-left:15%" />*@
+                            <h4>  @Html.DisplayFor(modelItem => item.tenHG)</h4>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <p> Giá: @(string.Format("{0:#,##0}",item.gia))  Vnđ</p>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/hangs/Details?id=@item.maHG">Xem </a>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/ChonHang/muahang?id=@item.maHG.ToString()"> Chọn </a>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+        @*product*@
+        <h2 class="title"> Hàng ưu đãi</h2>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                if (item.gia < 4100000)
+                {
+                    <div class="col-4">
+                        <a href="#" style="text-decoration:none;">
+                            <img src="~/@item.anh">
+                            @*<img src="~/@item.anh" class="card-img-top" style="width:70%; height:160px; margin-left:15%" />*@
+                            <h4>  @Html.DisplayFor(modelItem => item.tenHG)</h4>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <p> Giá: @(string.Format("{0:#,##0}",item.gia))  Vnđ</p>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/hangs/Details?id=@item.maHG">Xem </a>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/ChonHang/muahang?id=@item.maHG.ToString()"> Chọn </a>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <!-- ----------------offer----------- -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="~/Themes/images/b4.jpg" class="offter-img">
+                </div>
+                <div class="col-3">
+                    <p> Giải Pháp quản ký kho từ xa </p>
+                    <h1> Kết lối 4</h1>
+                    <small>
+                        Kinh doanh an toàn
+                        Kho cho phép bạn mở gian hàng free, bày hàng bán free và sau đó chỉ thu chiết khấu trên từng đơn hàng bạn bán ra. Hình thức chi phí phát sinh sau doanh thu này giúp bạn đầu tư an toàn hơn nếu mới tham gia thị trường buôn bán online.
+                    </small>
+                    <a href="" class="btn">Vào kho &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------testimonial------------------ -->
+
+
+    <div class="testmonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Nắm trong tay một đội ngũ hỗ trợ khách hàng rất tốt. Sau khi tạo gian hàng trên Lazada, bạn không cần phải hỗ trợ khách hàng gì cả vì gần như tất cả việc liên quan chăm sóc và hỗ trợ tiếp cận khách hàng đều được Lazada quản lý giúp bạn. Bạn chỉ cần đưa ra một số chương trình khuyến mãi riêng cho sản phẩm của mình hoặc giải quyết các thắc mắc của khách hàng trong trường hợp nhân viên cả Lazada không giải quyết được.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="~/Themes/images/user-1.png">
+                    <h3>Sean Parker</h3>
+                </div>
+
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Với tiềm lực tài chính lớn, Kho luôn tiến hành những chương trình quảng cáo khủng trên hầu hết các phương tiện mạng xã hội, đặc biệt là Google để giúp thu hút nhiều lượng khách hàng hơn, giúp sản phẩm của bạn tiếp cận gần hơn với người tiêu dùng mà bạn hoàn toàn không mất chi phí.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="~/Themes/images/user-2.png">
+                    <h3>Mike Smith</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Bán hàng trên Kho, bạn có thể tự giao hàng hoặc để Lazada cung cấp dịch vụ giao hàng và thu tiền hộ bạn. Hơn nữa còn có ưu đãi về chính sách giao hàng của Lazada đem lại lợi ích cho cả người bán và người mua, từ đó thúc đẩy doanh số bán hàng hơn.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="~/Themes/images/user-3.png">
+                    <h3>Slovely r</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------brands----------------- -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="~/Themes/images/logo-godrej.png">
+                </div>
+                <div class="col-5">
+                    <img src="~/Themes/images/logo-oppo.png">
+                </div>
+                <div class="col-5">
+                    <img src="~/Themes/images/logo-paypal.png">
+                </div>
+                <div class="col-5">
+                    <img src="~/Themes/images/logo-philips.png">
+                </div>
+                <div class="col-5">
+                    <img src="~/Themes/images/logo-white.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ------------------map------------------------------------- -->
+    <div class="map">
+        <div class="samll-container">
+            <h2 class="title"> Contact Us</h2>
+            <div class="row">
+                <div class="col-3">
+                    <img src="~/Themes/images/map2.jpg">
+                </div>
+
+                <div class="col-8">
+                    @*<div class="map-responsive">
+                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="450" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
+                    </div>*@
+                    <div class="map-responsive">
+                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="450" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- -----------------footer---------------- -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3> Download Our App</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    <div class="app-logo">
+                        <img src="~/Themes/images/play-store.png">
+                        <img src="~/Themes/images/app-store.png">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="/assets/img/logo/81a81e84855291.5d69fe2710f54.jpg" alt="" style="width:130px;height:110px;">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us </h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 - Tutorial</p>
+        </div>
+    </div>
+
+    <!-- 0-----------------js -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>

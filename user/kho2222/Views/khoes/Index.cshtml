@@ -1,0 +1,58 @@
+﻿@model IEnumerable<kho2222.Models.kho>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenkho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thetich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thetichDD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenkho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diachi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thetich)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thetichDD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mak }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mak }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mak })
+        </td>
+    </tr>
+}
+
+</table>

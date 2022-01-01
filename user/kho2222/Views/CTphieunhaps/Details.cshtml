@@ -1,0 +1,75 @@
+﻿@model kho2222.Models.CTphieunhap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CTphieunhap</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.namSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.namSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gianhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gianhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thanhtien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thanhtien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hang.tenHG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hang.tenHG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kho.tenkho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kho.tenkho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phieunhap.maNCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phieunhap.maNCC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

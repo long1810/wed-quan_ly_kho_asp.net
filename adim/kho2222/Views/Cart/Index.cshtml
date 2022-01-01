@@ -1,0 +1,271 @@
+﻿@*@model List<test.Models.CartItem>*@
+@*@using test.Models*@
+
+@model IEnumerable<kho2222.Models.hang>
+@using kho2222.Models
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ int tongtien = 0;
+    if (Session["giohang"] != null)
+    {
+        List<giohang> ds1 = (List<giohang>)Session["giohang"];
+        foreach (giohang sp in ds1)
+        {
+            tongtien += sp.sl * sp.price;
+        }
+    }
+}
+<h2>Index</h2>
+
+
+<a href="~/ChonHang/Index"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Chọn tiếp  </a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td> Mã HG</td>
+            <td> Ảnh HG</td>
+            <td> Số lượng </td>
+            <td> Giá </td>
+            <td>Thành tiền</td>
+
+            @*<td>Thành tiền</td>*@
+        </tr>
+    </thead>
+    <tbody>
+        @if (Session["giohang"] != null)
+        {
+            List<giohang> ds = (List<giohang>)Session["giohang"];
+            foreach (var item in ds)
+            {
+                using (Html.BeginForm("updatesl", "Cart"))
+                {
+                    <tr>
+
+                        <td><input type="hidden" value="@item.id" name="ma" /> @item.id</td>
+                        <td style="width:295px;height:100px"> <img src="~/@item.image" style="width:116px; height:140px; margin-left:0%" /></td>
+
+                        <td>
+                            <div class="row" style="width:295px;height:100px">
+                                <input type="number" value="@item.sl" name="sl"
+                                <span class="input-group-prepend">
+                                    <a class="input-group-text" type="button" href="~/Cart/them?id=@item.id.ToString()"> +</a>
+                                </span>
+                                <span class="input-group-prepend">
+                                    <a class="input-group-text" type="button" href="~/Cart/tru?id=@item.id.ToString()">-</a>
+                                </span>
+                                <span class="input-group-prepend">
+                                    <input class="btn btn-primary" type="submit" value="Update" />
+                                </span>
+                                <span class="input-group-prepend">
+                                    <a class="input-group-text" type="button" href="~/Cart/bo?id=@item.id.ToString()"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                                </span>
+
+                            </div>
+                        </td>
+                        <td> @string.Format("{0:#,##0}", item.price) đ </td>
+                        <td> @string.Format("{0:#,##0}", item.tongtien) đ </td>
+
+
+                    </tr>
+                }
+            }
+        }
+        <tr>
+
+            <td class="card bg-success text-white mb-4">Tổng  </td>
+            <td>  </td>
+
+            <td class="card bg-success text-white mb-4">Số lượng : @ViewBag.sl </td>
+            <td> </td>
+            @if (ViewBag.tongtien != null)
+            {
+                <td class="card bg-success text-white mb-4 " style="width:153px;"> tiền: @string.Format("{0:#,##0}", @ViewBag.tongtien) Đ</td>
+
+            }
+            <td>
+                @*  <a class="input-group-text" type="button" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Thanh toán</a>*@
+            </td>
+        </tr>
+        @*<canvas id="myAreaChart" width="1116" height="446" style="display: block; height: 223px; width: 558px;" class="chartjs-render-monitor"></canvas>*@
+
+
+    </tbody>
+
+</table>
+<span class="input-group-prepend " style="margin-top:10px;">
+    <a class="btn btn-danger " type="button" href="~/Cart/remove_All_Money"><i class="fa fa-times" aria-hidden="true"></i> Bỏ hết </a>
+</span>
+
+
+<div class="row " style="border-top:1px solid #808080;margin-top:30px;">
+    <div class="col-1">
+
+    </div>
+    <div class="col" style="border-right: 1px solid #00ff21 ">
+        <span class="input-group-prepend " style="margin-top:10px;margin-left:20%;width:60%;">
+            <a class="btn btn-primary " type="button" href="~/Cart/remove_All_Money"><i class="fa fa-times" aria-hidden="true"></i> Nhập Hàng </a>
+        </span>
+        <table class="">
+
+            <tfoot style="a">
+                @using (Html.BeginForm("checkout", "Cart"))
+                {
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Mã phiếu nhập :
+                                    </td>
+
+                                    <td>
+                                        <input type="text" name="mapn" />
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        mã nhà cung cấp :
+
+                                    </td>
+                                    <td>
+                                        @*<input type="text" name="mancc" />*@
+                                        <select class="selected" name="mancc" style="margin-top:7px;margin-bottom:20px">
+                                            <option>NCC1</option>
+                                            <option>NCC2</option>
+                                            <option>NCC3</option>
+                                            <option>NCC4</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mã kho  :
+                                    </td>
+
+                                    <td>
+                                        @*<input type="text" name="mak" />*@
+                                        <select class="selected" name="mak" style="margin-top:7px;margin-bottom:20px">
+                                            <option>k1</option>
+                                            <option>k2</option>
+                                            <option>k3</option>
+                                            <option>k4</option>
+                                            <option>k5</option>
+                                        </select>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+
+                                        <span class="input-group-prepend btn btn-warning">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top:10px"></i>
+                                            <input type="submit" value="Thanh toán" class="btn btn-warning" />
+                                            @*<a class="btn btn-warning" type="button" href="#"> Thanh toán</a>*@
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+    <div class="col">
+        <span class="input-group-prepend " style="margin-top:10px;margin-left:20%;width:60%;">
+            <a class="btn btn-primary " type="button" href="~/Cart/remove_All_Money"><i class="fa fa-times" aria-hidden="true"></i> Xuất hàng </a>
+        </span>
+        <table class="">
+            <tfoot style="a">
+                @using (Html.BeginForm("checkin", "Cart"))
+                {
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Mã Hóa đơn :
+                                    </td>
+
+                                    <td>
+                                        <input type="text" name="mahd" />
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mã khách hàng :
+
+                                    </td>
+                                    <td>
+                                        @*<input type="text" name="makh" />
+        khg1*@
+                                        <select class="selected" name="mak" style="margin-top:7px;margin-bottom:20px">
+                                            <option>khg1</option>
+                                            <option>khg2</option>
+                                            <option>khg3</option>
+                                            <option>khg4</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mã kho  :
+                                    </td>
+
+                                    <td>
+                                        @*<input type="text" name="mak" />*@
+                                        <select class="selected" name="mak" style="margin-top:7px;margin-bottom:20px">
+                                            <option>k1</option>
+                                            <option>k2</option>
+                                            <option>k3</option>
+                                            <option>k4</option>
+                                            <option>k5</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+
+                                        <span class="input-group-prepend btn btn-warning">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true" style="margin-top:10px"></i>
+                                            <input type="submit" value="Thanh toán" class="btn btn-warning" />
+                                            @*<a class="btn btn-warning" type="button" href="#"> Thanh toán</a>*@
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+    
+   
+
+</div>
+
+
+@*<span class="input-group-prepend">
+    <a class="btn btn-warning" type="button" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Thanh toán</a>
+</span>*@
+
+

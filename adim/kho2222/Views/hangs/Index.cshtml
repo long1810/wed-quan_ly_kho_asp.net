@@ -1,0 +1,173 @@
+﻿@model IEnumerable<kho2222.Models.hang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Charts</h1>
+
+
+
+        <div class="row">
+            @*<div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bar Chart Example</div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
+                </div>*@
+
+
+
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header"><i class="fas fa-chart-pie mr-1"></i>Bảng số lượng hàng </div>
+                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@using (Html.BeginForm())
+{
+    <input type="text" name="KeyWord" value="@ViewBag.KeyWord" />
+    <input type="submit" name="submit" value="Tim " />
+}
+<table class="table">
+    <tr>
+        <th>
+            Mã Hàng
+        </th>
+
+        <th>
+            Tên Hàng
+        </th>
+        <th>
+            Năm SX
+        </th>
+        <th>
+            Hạn sử dụng
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Thể Tích
+        </th>
+
+
+        <th>
+
+            @if (ViewBag.filename == "sort" && ViewBag.asc == 0)
+            {
+                <a href="~/hangs/Index?filename=sort&asc=1"> Giá </a>
+                <i class="fa fa-arrow-down"></i>
+            }
+            else
+            {
+                <a href="~/hangs/Index?filename=sort&asc=0"> Giá</a>
+                <i class="fa fa-arrow-up"></i>
+            }
+
+        </th>
+        <th>
+            ngày nhập kho
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loaiHG.tenLH)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.maHG)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenHG)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.namSX)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.hanSD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tinhtrang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mota)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.thetich)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.gia)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ngaynhapkho)
+    </td>
+    <td>
+        <img src="/@item.anh" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.loaiHG.tenLH)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.maHG }) |
+        @Html.ActionLink("Details", "Details", new { id = item.maHG }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.maHG })
+    </td>
+</tr>
+    }
+
+
+
+</table>
+<div class="row">
+    @if (@ViewBag.Numpages != null && @ViewBag.Numpages > 1)
+    {
+        <span style="text-decoration:initial; color:white;margin-right:2px;padding-top:4px"><a href="~/hangs/index?pape=1&filename=@ViewBag.filename&asc=@ViewBag.asc"> << </a> </span>
+        for (int i = 1; i <= @ViewBag.Numpages; i++)
+        {
+            if (@ViewBag.CurrentPage != @i)
+            {
+                <span class="btn btn-primary text-white" style="text-decoration:initial; color:white;"><a style="color:aliceblue" href="~/hangs/Index?pape=@i&filename=@ViewBag.filename&asc=@ViewBag.asc">@i</a> </span>
+            }
+            else
+            {
+                <span style="text-decoration:initial; color:white;" class="btn btn-success"><u> @i </u></span>
+            }
+
+        }
+        <span style="text-decoration:initial; color:white;margin-left:2px;padding-top:4px"><a href="~/hangs/Index?pape=@ViewBag.Numpages&filename=@ViewBag.filename&asc=@ViewBag.asc"> >> </a> </span>
+    }
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="~/Themes/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="~/Themes/assets/demo/chart-area-demo.js"></script>
+<script src="~/Themes/assets/demo/chart-bar-demo.js"></script>
+<script src="~/Themes/assets/demo/chart-pie-demo.js"></script>

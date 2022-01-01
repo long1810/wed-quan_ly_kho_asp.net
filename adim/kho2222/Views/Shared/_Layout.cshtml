@@ -1,0 +1,283 @@
+﻿ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="~/Themes/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="~/Home/Index">Start Bootstrap</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button><!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                @*<input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />*@
+
+                @using kho2222.Models
+                @{ int tongtien = 0;
+                    int dem = 0;
+                    if (Session["giohang"] != null)
+                    {
+                        List<giohang> ds1 = (List<giohang>)Session["giohang"];
+                        foreach (giohang sp in ds1)
+                        {
+                            tongtien += sp.sl * sp.price;
+                        }
+                        dem = ds1.Count();
+                    }
+                }
+
+                <div>
+                    @*<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i> : @ViewBag.giohangcount</a>*@
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-shopping-cart text-white" aria-hidden="true"></i> :@if (dem > 0)
+                        {@dem}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        @if (Session["giohang"] != null)
+                        {
+
+                            List<giohang> ds = (List<giohang>)Session["giohang"];
+                            foreach (giohang sp in ds)
+                            {
+                                @*@(tongtien+= sp.sl *sp.price);*@
+
+
+                                <div class="dropdown-item-text">
+                                    <a class="dropdown-item" href="#" style="color:#007bff;">@sp.id</a>
+                                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend">
+                                                <a class="input-group-text" type="button" href="~/ChonHang/them?id=@sp.id.ToString()"> +</a>
+                                            </span>
+                                            <input class="form-" type="text" style="width:40px;" value="@sp.sl" disabled />
+                                            <span class="input-group-prepend">
+                                                <a class="input-group-text" type="button" href="~/ChonHang/tru?id=@sp.id.ToString()">-</a>
+                                            </span>
+                                            <span class="input-group-prepend">
+                                                <a class="input-group-text" type="button" href="~/ChonHang/bo?id=@sp.id.ToString()"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <a class="dropdown-item" href=""> @(string.Format("{0:#,##0}",sp.price*sp.sl)) Vnđ</a>
+
+                                @*<a class="dropdown-item" href="~/Home/logout">Logout</a>*@
+
+                            }
+                        }
+                        <div class="dropdown-item-text">
+                            <span style="color:#ff6a00">Tổng: @(string.Format("{0:#,##0}",tongtien))đ</span>
+                            <a class="btn btn-primary" href="~/Cart/Index"> Thanh Toán </a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                @*<div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>*@
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                @if (Session["tk"] != null)
+                {
+
+
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span style="color : red"> @Session["tk"]</span></a>
+
+
+                }
+                @if (Session["tk"] == null)
+                {
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                }
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    @*<a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>*@
+
+                    <a class="dropdown-item" href="~/Home/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Hàng</div>
+
+                        <a class="nav-link" href="~/ChonHang/Index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-cart-plus" aria-hidden="true"></i></div>
+                            Chọn hàng
+                        </a>
+                        <a class="nav-link" href="~/Cart/Index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></div>
+                            Giỏ hàng
+                        </a>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Nhập Hàng
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="~/phieunhaps/Index">
+                                    <div class="sb-nav-link-icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+                                    Phiếu Nhập hàng
+                                </a>
+                                <a class="nav-link" href="~/CTphieunhaps/Index">
+                                    <div class="sb-nav-link-icon"></div>
+                                    CT Phiếu Nhập
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Xuất Hàng
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="~/hoadons/Index">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Hóa đơn Xuất hàng
+                                </a>
+                                <a class="nav-link" href="~/CThoadons/Index">
+                                    <div class="sb-nav-link-icon"></div>
+                                    CT Hóa Đơn
+                                </a>
+                            </nav>
+                        </div>
+
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            kho
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="~/khoes/Index">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Kho Hàng
+                                </a>
+                                <a class="nav-link" href="~/inventories/Index">
+                                    <div class="sb-nav-link-icon"></div>
+                                    CT Hóa Đơn
+                                </a>
+                            </nav>
+                        </div>
+                        <a class="nav-link" href="~/NSXes/Index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+                            Nhà Sản xuất
+                        </a>
+                        <a class="nav-link" href="~/NCCs/Index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+                            Nhà Cung Cấp
+                        </a>
+                        <a class="nav-link" href="~/loaiHGs/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Loại Hàng
+                        </a>
+                        <a class="nav-link" href="~/hangs/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Hàng
+                        </a>
+                        <a class="nav-link" href="~/hangs/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Khách hàng
+                        </a>
+
+                        
+                        <a class="nav-link" href="~/tks/Index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                            Taikhoan
+                        </a>
+
+
+
+
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="container" style="margin-left:10px">
+                @RenderBody()
+            </main>
+
+
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+    @*====================================================*@
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/datatables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="~/Themes/assets/demo/datatables-demo.js"></script>
+    <script src="~/Themes/js/scripts.js"></script>
+    <script src="~/Themes/assets/demo/chart-area-demo.js"></script>
+    <script src="~/Themes/assets/demo/chart-bar-demo.js"></script>
+
+
+    <script src="~/Themes/ckfinder_aspnet_2.6.2.1/ckfinder/ckfinder.js"></script>
+    <script src="~/Themes/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+
+    @*<div class="container body-content">
+
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
+    <script src="~/Themes/ckfinder_aspnet_2.6.2.1/ckfinder/ckfinder.js"></script>
+    <script src="~/Themes/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    <script src="~/soan/ckeditor5-build-classic/ckeditor.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Themes/ckfinder_aspnet_2.6.2.1/ckfinder/ckfinder.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script src="~/Scripts/main.js"></script>

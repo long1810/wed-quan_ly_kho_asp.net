@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "login";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+
+<h2>login</h2>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="~/Themes/css/Stylelogincss.css">
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="box">
+            <h2> LOGIN </h2>
+            <form>
+                <div class="inputbox">
+                    <input type="text"  name="user_name" required="">
+                    <label> Username</label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" name="pass_word" required="">
+                    <label> password </label>
+                </div>
+                <div class="inputbox">
+                    @*<input type="text" name="mak" required="">*@
+                    <select class="selected" name="mak" style="margin-top:7px;margin-bottom:20px">
+                        <option>k1</option>
+                        <option>k2</option>
+                        <option>k3</option>
+                        <option>k4</option>
+                        <option>k5</option>
+                    </select>
+                    <label> mã kho </label>
+                </div>
+                <a href="#"><input type="submit" name="Login" value="Submit"> </a>
+                <a href="~/ChonHang/Index"> Home  </a>
+            </form>
+        </div>
+    }
+
+</body>

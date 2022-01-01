@@ -1,0 +1,70 @@
+﻿@model IEnumerable<kho2222.Models.CThoadon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.namSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thanhtien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hang.tenHG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoadon.tk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kho.tenkho)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.namSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thanhtien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hang.tenHG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hoadon.tk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kho.tenkho)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

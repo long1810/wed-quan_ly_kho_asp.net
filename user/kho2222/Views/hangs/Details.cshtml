@@ -1,0 +1,229 @@
+﻿@model kho2222.Models.hang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cụ thể </h2>
+
+@*<div>
+    <h4>hang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenHG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenHG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.namSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.namSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hanSD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hanSD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tinhtrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhtrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thetich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thetich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anh)
+        </dd>
+        <td>
+            <img src="/@Model.anh" />
+        </td>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loaiHG.tenLH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loaiHG.tenLH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NSX.tenNSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NSX.tenNSX)
+        </dd>
+
+    </dl>
+</div>*@
+
+<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/Themes/css/stylee.css">
+<link rel="stylesheet" href="~/assets/css/style.css">
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- -----------featured ------------ -->
+    <div class="samll-container single-product">
+        <div class="row">
+            <div class="col-5">
+                <img src="/@Model.anh" width="100%" id="productimg">
+            </div>
+            <div class="col-3">
+                <p>Home / T-Shirt </p>
+                <h1>  @Html.DisplayFor(model => model.tenHG)</h1>
+                <h4> @(string.Format("{0:#,##0}", Model.gia)) Vnđ</h4>
+                @*<select style="margin-top:10px">
+                        <option>Select Size</option>
+                        <option>XLL</option>
+                        <option>XL</option>
+                        <option>Medium</option>
+                        <option>Small</option>
+                    </select>*@
+                @*<input type="number" value="1">*@
+                <a class="btn"  href="~/ChonHang/muahang?id=@Model.maHG.ToString()"> Thêm vào giỏ hàng </a>
+               
+
+                <h3> Mô tả <i class="fa fa-indent"></i> </h3>
+                <p>Thể tích :@Html.DisplayFor(model => model.thetich) m2  </p>
+                <p>Năm sản xuất : @Html.DisplayFor(model => model.namSX)   </p>
+                <p>Nhà Sản xuất  : @Html.DisplayFor(model => model.NSX.tenNSX)   </p>
+            </div>
+        </div>
+    </div>
+
+
+   
+    <p class="btn btn-danger">
+
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+    <p class="btn btn-outline-primary">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.maHG }) |
+
+    </p>
+
+
+
+
+
+    <!-- -----------------footer---------------- -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3> Download Our App</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    <div class="app-logo">
+                        <img src="~/Themes/images/play-store.png">
+                        <img src="~/Themes/images/app-store.png">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="~/Themes/images/logo-white.png">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us </h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 - Tutorial</p>
+        </div>
+
+    </div>
+    <!-- 0-----------------js -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+
+    <!-- js for product gallery -->
+
+    <script>
+        var ProductImg = document.getElementById("productimg")
+        var samllimg = document.getElementsByClassName("samllimg")
+        samllimg[0].onclick = function () {
+            ProductImg.src = samllimg[0].src;
+        }
+        samllimg[1].onclick = function () {
+            ProductImg.src = samllimg[1].src;
+        }
+        samllimg[2].onclick = function () {
+            ProductImg.src = samllimg[2].src;
+        }
+        samllimg[3].onclick = function () {
+            ProductImg.src = samllimg[3].src;
+        }
+    </script>
+</body>
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<kho2222.Models.NSX>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenNSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diachi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenNSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dienthoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diachi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maNSX }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maNSX }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maNSX })
+        </td>
+    </tr>
+}
+
+</table>

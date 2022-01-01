@@ -1,0 +1,51 @@
+﻿@model kho2222.Models.hoadon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>hoadon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayban)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thanhtoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thanhtoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kh.tenkh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kh.tenkh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maHD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

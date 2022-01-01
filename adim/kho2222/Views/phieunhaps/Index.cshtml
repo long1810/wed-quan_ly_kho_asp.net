@@ -1,0 +1,53 @@
+﻿@model IEnumerable<kho2222.Models.phieunhap>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.maPN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaynhap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tiennhap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NCC.tenNCC)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maPN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaynhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tiennhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NCC.tenNCC)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maPN }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maPN }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maPN })
+        </td>
+    </tr>
+}
+
+</table>

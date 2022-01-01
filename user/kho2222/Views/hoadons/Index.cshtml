@@ -1,0 +1,52 @@
+﻿@model IEnumerable<kho2222.Models.hoadon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thanhtoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kh.tenkh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thanhtoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kh.tenkh)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maHD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maHD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maHD })
+        </td>
+    </tr>
+}
+
+</table>

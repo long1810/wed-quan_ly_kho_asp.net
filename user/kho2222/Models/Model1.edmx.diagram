@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9d310c0683748819d5204943f954a4f" Name="Diagram1">
+        <EntityTypeShape EntityType="kho2Model.CThoadon" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.CTphieunhap" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.hang" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.hoadon" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.inventory" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.kh" Width="1.5" PointX="1.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.kho" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.loaiHG" Width="1.5" PointX="1.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.NCC" Width="1.5" PointX="1.5" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.NSX" Width="1.5" PointX="1.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.phieunhap" Width="1.5" PointX="3.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kho2Model.tk" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="kho2Model.FK_CThoadon_hang" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_CThoadon_hoadon" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_CThoadon_kho" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_CTphieunhap_hang" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_CTphieunhap_kho" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_CTphieunhap_phieunhap" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_hang_loaiHG" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_hang_NSX" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_hoadon_kh" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_inventory_kho" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_tk_kho" ManuallyRouted="false" />
+        <AssociationConnector Association="kho2Model.FK_phieunhap_NCC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kho2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CThoadon">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maHD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maHG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mak" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namSX" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="giaban" Type="Int32" />
+    <Property Name="thanhtien" Type="Int32" />
+    <NavigationProperty Name="hang" Relationship="Self.FK_CThoadon_hang" FromRole="CThoadon" ToRole="hang" />
+    <NavigationProperty Name="hoadon" Relationship="Self.FK_CThoadon_hoadon" FromRole="CThoadon" ToRole="hoadon" />
+    <NavigationProperty Name="kho" Relationship="Self.FK_CThoadon_kho" FromRole="CThoadon" ToRole="kho" />
+  </EntityType>
+  <EntityType Name="CTphieunhap">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maPN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maHG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mak" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namSX" Type="DateTime" Precision="0" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="gianhap" Type="Int32" />
+    <Property Name="thanhtien" Type="Int32" />
+    <NavigationProperty Name="hang" Relationship="Self.FK_CTphieunhap_hang" FromRole="CTphieunhap" ToRole="hang" />
+    <NavigationProperty Name="kho" Relationship="Self.FK_CTphieunhap_kho" FromRole="CTphieunhap" ToRole="kho" />
+    <NavigationProperty Name="phieunhap" Relationship="Self.FK_CTphieunhap_phieunhap" FromRole="CTphieunhap" ToRole="phieunhap" />
+  </EntityType>
+  <EntityType Name="hang">
+    <Key>
+      <PropertyRef Name="maHG" />
+    </Key>
+    <Property Name="maHG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenHG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="namSX" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hanSD" Type="DateTime" Precision="0" />
+    <Property Name="maLH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maNSX" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tinhtrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mota" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="thetich" Type="Double" />
+    <Property Name="gia" Type="Int32" />
+    <Property Name="anh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CThoadons" Relationship="Self.FK_CThoadon_hang" FromRole="hang" ToRole="CThoadon" />
+    <NavigationProperty Name="CTphieunhaps" Relationship="Self.FK_CTphieunhap_hang" FromRole="hang" ToRole="CTphieunhap" />
+    <NavigationProperty Name="loaiHG" Relationship="Self.FK_hang_loaiHG" FromRole="hang" ToRole="loaiHG" />
+    <NavigationProperty Name="NSX" Relationship="Self.FK_hang_NSX" FromRole="hang" ToRole="NSX" />
+    <Property Name="ngaynhapkho" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="hoadon">
+    <Key>
+      <PropertyRef Name="maHD" />
+    </Key>
+    <Property Name="maHD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ngayban" Type="DateTime" Precision="0" />
+    <Property Name="tk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="maKH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="thanhtoan" Type="Int32" />
+    <NavigationProperty Name="CThoadons" Relationship="Self.FK_CThoadon_hoadon" FromRole="hoadon" ToRole="CThoadon" />
+    <NavigationProperty Name="kh" Relationship="Self.FK_hoadon_kh" FromRole="hoadon" ToRole="kh" />
+  </EntityType>
+  <EntityType Name="inventory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mak" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maHG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="namSX" Type="DateTime" Precision="0" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="tongtien" Type="Int32" />
+    <NavigationProperty Name="kho" Relationship="Self.FK_inventory_kho" FromRole="inventory" ToRole="kho" />
+  </EntityType>
+  <EntityType Name="kh">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenkh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="dienthoai" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hoadons" Relationship="Self.FK_hoadon_kh" FromRole="kh" ToRole="hoadon" />
+  </EntityType>
+  <EntityType Name="kho">
+    <Key>
+      <PropertyRef Name="mak" />
+    </Key>
+    <Property Name="mak" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenkho" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="thetich" Type="Double" />
+    <Property Name="anh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="thetichDD" Type="Int32" />
+    <NavigationProperty Name="CThoadons" Relationship="Self.FK_CThoadon_kho" FromRole="kho" ToRole="CThoadon" />
+    <NavigationProperty Name="CTphieunhaps" Relationship="Self.FK_CTphieunhap_kho" FromRole="kho" ToRole="CTphieunhap" />
+    <NavigationProperty Name="inventories" Relationship="Self.FK_inventory_kho" FromRole="kho" ToRole="inventory" />
+    <NavigationProperty Name="tks" Relationship="Self.FK_tk_kho" FromRole="kho" ToRole="tk" />
+  </EntityType>
+  <EntityType Name="loaiHG">
+    <Key>
+      <PropertyRef Name="maLH" />
+    </Key>
+    <Property Name="maLH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenLH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hangs" Relationship="Self.FK_hang_loaiHG" FromRole="loaiHG" ToRole="hang" />
+  </EntityType>
+  <EntityType Name="NCC">
+    <Key>
+      <PropertyRef Name="maNCC" />
+    </Key>
+    <Property Name="maNCC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenNCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="dienthoai" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="phieunhaps" Relationship="Self.FK_phieunhap_NCC" FromRole="NCC" ToRole="phieunhap" />
+  </EntityType>
+  <EntityType Name="NSX">
+    <Key>
+      <PropertyRef Name="maNSX" />
+    </Key>
+    <Property Name="maNSX" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenNSX" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="dienthoai" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="hangs" Relationship="Self.FK_hang_NSX" FromRole="NSX" ToRole="hang" />
+  </EntityType>
+  <EntityType Name="phieunhap">
+    <Key>
+      <PropertyRef Name="maPN" />
+    </Key>
+    <Property Name="maPN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ngaynhap" Type="DateTime" Precision="0" />
+    <Property Name="maNCC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tiennhap" Type="Int32" />
+    <NavigationProperty Name="CTphieunhaps" Relationship="Self.FK_CTphieunhap_phieunhap" FromRole="phieunhap" ToRole="CTphieunhap" />
+    <NavigationProperty Name="NCC" Relationship="Self.FK_phieunhap_NCC" FromRole="phieunhap" ToRole="NCC" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tk">
+    <Key>
+      <PropertyRef Name="tk1" />
+    </Key>
+    <Property Name="tk1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mk" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mak" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kho" Relationship="Self.FK_tk_kho" FromRole="tk" ToRole="kho" />
+    <Property Name="chucvu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_CThoadon_hang">
+    <End Role="hang" Type="Self.hang" Multiplicity="1" />
+    <End Role="CThoadon" Type="Self.CThoadon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hang">
+        <PropertyRef Name="maHG" />
+      </Principal>
+      <Dependent Role="CThoadon">
+        <PropertyRef Name="maHG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CThoadon_hoadon">
+    <End Role="hoadon" Type="Self.hoadon" Multiplicity="1" />
+    <End Role="CThoadon" Type="Self.CThoadon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hoadon">
+        <PropertyRef Name="maHD" />
+      </Principal>
+      <Dependent Role="CThoadon">
+        <PropertyRef Name="maHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CThoadon_kho">
+    <End Role="kho" Type="Self.kho" Multiplicity="1" />
+    <End Role="CThoadon" Type="Self.CThoadon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kho">
+        <PropertyRef Name="mak" />
+      </Principal>
+      <Dependent Role="CThoadon">
+        <PropertyRef Name="mak" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTphieunhap_hang">
+    <End Role="hang" Type="Self.hang" Multiplicity="1" />
+    <End Role="CTphieunhap" Type="Self.CTphieunhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hang">
+        <PropertyRef Name="maHG" />
+      </Principal>
+      <Dependent Role="CTphieunhap">
+        <PropertyRef Name="maHG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTphieunhap_kho">
+    <End Role="kho" Type="Self.kho" Multiplicity="1" />
+    <End Role="CTphieunhap" Type="Self.CTphieunhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kho">
+        <PropertyRef Name="mak" />
+      </Principal>
+      <Dependent Role="CTphieunhap">
+        <PropertyRef Name="mak" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTphieunhap_phieunhap">
+    <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="1" />
+    <End Role="CTphieunhap" Type="Self.CTphieunhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="phieunhap">
+        <PropertyRef Name="maPN" />
+      </Principal>
+      <Dependent Role="CTphieunhap">
+        <PropertyRef Name="maPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hang_loaiHG">
+    <End Role="loaiHG" Type="Self.loaiHG" Multiplicity="1" />
+    <End Role="hang" Type="Self.hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaiHG">
+        <PropertyRef Name="maLH" />
+      </Principal>
+      <Dependent Role="hang">
+        <PropertyRef Name="maLH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hang_NSX">
+    <End Role="NSX" Type="Self.NSX" Multiplicity="0..1" />
+    <End Role="hang" Type="Self.hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NSX">
+        <PropertyRef Name="maNSX" />
+      </Principal>
+      <Dependent Role="hang">
+        <PropertyRef Name="maNSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadon_kh">
+    <End Role="kh" Type="Self.kh" Multiplicity="0..1" />
+    <End Role="hoadon" Type="Self.hoadon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kh">
+        <PropertyRef Name="maKH" />
+      </Principal>
+      <Dependent Role="hoadon">
+        <PropertyRef Name="maKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventory_kho">
+    <End Role="kho" Type="Self.kho" Multiplicity="1" />
+    <End Role="inventory" Type="Self.inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kho">
+        <PropertyRef Name="mak" />
+      </Principal>
+      <Dependent Role="inventory">
+        <PropertyRef Name="mak" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tk_kho">
+    <End Role="kho" Type="Self.kho" Multiplicity="0..1" />
+    <End Role="tk" Type="Self.tk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kho">
+        <PropertyRef Name="mak" />
+      </Principal>
+      <Dependent Role="tk">
+        <PropertyRef Name="mak" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phieunhap_NCC">
+    <End Role="NCC" Type="Self.NCC" Multiplicity="0..1" />
+    <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCC">
+        <PropertyRef Name="maNCC" />
+      </Principal>
+      <Dependent Role="phieunhap">
+        <PropertyRef Name="maNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="kho2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CThoadons" EntityType="Self.CThoadon" />
+    <EntitySet Name="CTphieunhaps" EntityType="Self.CTphieunhap" />
+    <EntitySet Name="hangs" EntityType="Self.hang" />
+    <EntitySet Name="hoadons" EntityType="Self.hoadon" />
+    <EntitySet Name="inventories" EntityType="Self.inventory" />
+    <EntitySet Name="khs" EntityType="Self.kh" />
+    <EntitySet Name="khoes" EntityType="Self.kho" />
+    <EntitySet Name="loaiHGs" EntityType="Self.loaiHG" />
+    <EntitySet Name="NCCs" EntityType="Self.NCC" />
+    <EntitySet Name="NSXes" EntityType="Self.NSX" />
+    <EntitySet Name="phieunhaps" EntityType="Self.phieunhap" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tks" EntityType="Self.tk" />
+    <AssociationSet Name="FK_CThoadon_hang" Association="Self.FK_CThoadon_hang">
+      <End Role="hang" EntitySet="hangs" />
+      <End Role="CThoadon" EntitySet="CThoadons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CThoadon_hoadon" Association="Self.FK_CThoadon_hoadon">
+      <End Role="hoadon" EntitySet="hoadons" />
+      <End Role="CThoadon" EntitySet="CThoadons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CThoadon_kho" Association="Self.FK_CThoadon_kho">
+      <End Role="kho" EntitySet="khoes" />
+      <End Role="CThoadon" EntitySet="CThoadons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTphieunhap_hang" Association="Self.FK_CTphieunhap_hang">
+      <End Role="hang" EntitySet="hangs" />
+      <End Role="CTphieunhap" EntitySet="CTphieunhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTphieunhap_kho" Association="Self.FK_CTphieunhap_kho">
+      <End Role="kho" EntitySet="khoes" />
+      <End Role="CTphieunhap" EntitySet="CTphieunhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTphieunhap_phieunhap" Association="Self.FK_CTphieunhap_phieunhap">
+      <End Role="phieunhap" EntitySet="phieunhaps" />
+      <End Role="CTphieunhap" EntitySet="CTphieunhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hang_loaiHG" Association="Self.FK_hang_loaiHG">
+      <End Role="loaiHG" EntitySet="loaiHGs" />
+      <End Role="hang" EntitySet="hangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hang_NSX" Association="Self.FK_hang_NSX">
+      <End Role="NSX" EntitySet="NSXes" />
+      <End Role="hang" EntitySet="hangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadon_kh" Association="Self.FK_hoadon_kh">
+      <End Role="kh" EntitySet="khs" />
+      <End Role="hoadon" EntitySet="hoadons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventory_kho" Association="Self.FK_inventory_kho">
+      <End Role="kho" EntitySet="khoes" />
+      <End Role="inventory" EntitySet="inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tk_kho" Association="Self.FK_tk_kho">
+      <End Role="kho" EntitySet="khoes" />
+      <End Role="tk" EntitySet="tks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phieunhap_NCC" Association="Self.FK_phieunhap_NCC">
+      <End Role="NCC" EntitySet="NCCs" />
+      <End Role="phieunhap" EntitySet="phieunhaps" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

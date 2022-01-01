@@ -1,0 +1,106 @@
+﻿@model IEnumerable<kho2222.Models.hang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using kho2222.Models
+@{ int tongtien = 0;
+    if (Session["giohang"] != null)
+    {
+        List<giohang> ds1 = (List<giohang>)Session["giohang"];
+        foreach (giohang sp in ds1)
+        {
+            tongtien += sp.sl * sp.price;
+        }
+    }
+}
+<h2>Chọn Hàng</h2>
+<div style="position:fixed; top :60px; right:9px;z-index:1">
+    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i> : @ViewBag.giohangcount</a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+        @if (Session["giohang"] != null)
+        {
+
+            List<giohang> ds = (List<giohang>)Session["giohang"];
+            foreach (giohang sp in ds)
+            {
+                @*@(tongtien+= sp.sl *sp.price);*@
+
+
+                <div class="dropdown-item-text">
+                    <a class="dropdown-item" href="#" style="color:#007bff;">@sp.id</a>
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <a class="input-group-text" type="button" href="~/ChonHang/them?id=@sp.id.ToString()"> +</a>
+                            </span>
+                            <input class="form-" type="text" style="width:40px;" value="@sp.sl" disabled />
+                            <span class="input-group-prepend">
+                                <a class="input-group-text" type="button" href="~/ChonHang/tru?id=@sp.id.ToString()">-</a>
+                            </span>
+                            <span class="input-group-prepend">
+                                <a class="input-group-text" type="button" href="~/ChonHang/bo?id=@sp.id.ToString()"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <a class="dropdown-item" href=""> @(string.Format("{0:#,##0}",sp.price*sp.sl)) Vnđ</a>
+
+                @*<a class="dropdown-item" href="~/Home/logout">Logout</a>*@
+
+
+            }
+        }
+        <div class="dropdown-item-text">
+            <span style="color:#ff6a00">Tổng: @(string.Format("{0:#,##0}",tongtien))đ</span>
+            <a class="btn btn-primary" href="~/Cart/Index"> Thanh Toán </a>
+        </div>
+    </div>
+
+
+
+</div>
+<div style="z-index:2">
+    <ul style="list-style:none " class=" row">
+
+        @foreach (var item in Model)
+        {
+            <li class="col-3" >
+                <a href="#" style="text-decoration:none;">
+                    <div class="card mb-4">
+                        <span>
+                            <img src="~/@item.anh" class="card-img-top" style="width:70%; height:160px; margin-left:15%" />
+                        </span>
+
+                        <div class="card-body" id="c">
+                            <h5 class="card-title">Mã: @Html.DisplayFor(modelItem => item.maHG)</h5>
+
+                            @*<span class="card-text">Mô tả :  @Html.Raw(@item.mota) </span><br />*@
+                            @*<span class="card-text">Số lượng:  @item.so </span><br />*@
+                            <span class="card-text"> Giá: @(string.Format("{0:#,##0}",item.gia))  Vnđ<br /></span>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/ChonHang/muahang?id=@item.maHG.ToString()"> Chọn </a>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/hangs1/Details?id=@item.maHG"> Xem </a>
+                            <a class="btn btn-primary" style="color:#ffffff" href="~/Cart/giohang?id=@item.maHG.ToString()"> Giỏ hàng </a>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+
+</div>
+
+<style>
+
+    div #c :hover {
+        /*width: 150px;
+        height: 80px;*/
+        background-color: #92b5da80;
+        -ms-transform: scaleX(1); /* IE 9  */
+        transform: scaleY(1.1);
+    }
+</style>
+
